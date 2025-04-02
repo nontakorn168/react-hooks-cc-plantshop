@@ -2,6 +2,13 @@
   --green: rgb(39, 189, 39);
 }
 
+.sold-out {
+  background-color: gray; /* Example styling */
+  color: white;
+  cursor: not-allowed; /* Example styling */
+}
+
+
 * {
   margin: 0;
   padding: 0;
