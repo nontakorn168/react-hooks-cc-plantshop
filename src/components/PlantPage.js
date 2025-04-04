@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
-import { set } from "date-fns";
 
 function PlantPage() {
   const [plants, setPlants] = useState([])
