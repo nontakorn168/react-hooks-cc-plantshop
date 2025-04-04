@@ -5,7 +5,7 @@
       "name": "Aloe",
       "image": "./images/aloe.jpg",
       "price": 15.99,
-      "sold": false
+      "sold": true
     },
     {
       "id": 2,

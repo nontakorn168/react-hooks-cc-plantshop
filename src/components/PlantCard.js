@@ -1,9 +1,9 @@
 import React from "react";
 
-function PlantCard({ plant, handleSoldOutClick }) {
-  const handleClick = () => {
-    handleSoldOutClick(plant);
-    console.log(plant);
+ function  PlantCard({ plant, handleSoldOutClick }) {
+  const handleClick = async () => {
+    const updatedPlant = await handleSoldOutClick(plant);
+    console.log("Updated plant:", updatedPlant);
   };
 
   return (
@@ -20,6 +20,7 @@ function PlantCard({ plant, handleSoldOutClick }) {
           In Stock
         </button>
       )}
+
     </li>
   );
 }

@@ -6,12 +6,15 @@ import { set } from "date-fns";
 
 function PlantPage() {
   const [plants, setPlants] = useState([])
+  
   const [formData, setFormData] = useState({
     name: '',
     image: '',
     price: ''
   }); 
   const [filteredPlantsSearch, setFilteredPlantsSearch] = useState((""));
+
+
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
@@ -39,24 +42,54 @@ function PlantPage() {
     //   );
     // }
 
+    // function handleSoldOutClick(plant) {
+    //   const updatedPlant = { ...plant, soldOut: !plant.soldOut };
+    
+    //   fetch(`http://localhost:6001/plants/${plant.id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ soldOut: updatedPlant.soldOut }),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((updatedData) => {
+    //       setPlants((prevPlants) =>
+    //         prevPlants.map((p) =>
+    //           p.id === updatedData.id ? updatedData : p
+    //         )
+    //       );
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error updating plant:", error);
+    //     });
+        
+    // }
+
     async function handleSoldOutClick(plant) {
       const updatedPlant = { ...plant, sold: !plant.sold };
     
-      const res = await fetch(`http://localhost:6001/plants/${plant.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ sold: updatedPlant.sold }),
-      });
+      try {
+        const res = await fetch(`http://localhost:6001/plants/${plant.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sold: updatedPlant.sold }),
+        });
     
-      const updatedData = await res.json();
+        const updatedData = await res.json();
     
-      setPlants((prevPlants) =>
-        prevPlants.map((p) =>
-          p.id === updatedData.id ? updatedData : p
-        )
-      );
+        setPlants((prevPlants) =>
+          prevPlants.map((p) =>
+            p.id === updatedData.id ? updatedData : p
+          )
+        );
+    
+        return updatedData; //  ส่งกลับให้ปลายทางใช้งาน
+      } catch (error) {
+        console.error("Error updating plant:", error);
+      }
     }
 
   function handleSeach(e) {
