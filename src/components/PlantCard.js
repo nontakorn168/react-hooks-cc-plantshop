@@ -1,6 +1,6 @@
 import React from "react";
 
- function  PlantCard({ plant, handleSoldOutClick }) {
+function PlantCard({ plant, handleSoldOutClick }) {
   const handleClick = async () => {
     const updatedPlant = await handleSoldOutClick(plant);
     console.log("Updated plant:", updatedPlant);
@@ -20,9 +20,9 @@ import React from "react";
           In Stock
         </button>
       )}
-
     </li>
   );
 }
+
 
 export default PlantCard;

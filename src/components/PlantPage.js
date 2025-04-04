@@ -11,6 +11,7 @@ function PlantPage() {
     name: '',
     image: '',
     price: ''
+    // sold: false
   }); 
   const [filteredPlantsSearch, setFilteredPlantsSearch] = useState((""));
 
@@ -69,6 +70,11 @@ function PlantPage() {
     async function handleSoldOutClick(plant) {
       const updatedPlant = { ...plant, sold: !plant.sold };
     
+      // ✅ อัปเดต state ทันทีเพื่อให้ UI เปลี่ยนก่อน
+      setPlants((prevPlants) =>
+        prevPlants.map((p) => (p.id === plant.id ? updatedPlant : p))
+      );
+    
       try {
         const res = await fetch(`http://localhost:6001/plants/${plant.id}`, {
           method: "PATCH",
@@ -80,13 +86,12 @@ function PlantPage() {
     
         const updatedData = await res.json();
     
+        // ✅ ปรับให้แม่นอีกทีหลังได้ response จริง
         setPlants((prevPlants) =>
-          prevPlants.map((p) =>
-            p.id === updatedData.id ? updatedData : p
-          )
+          prevPlants.map((p) => (p.id === updatedData.id ? updatedData : p))
         );
     
-        return updatedData; //  ส่งกลับให้ปลายทางใช้งาน
+        return updatedData;
       } catch (error) {
         console.error("Error updating plant:", error);
       }

@@ -5,7 +5,7 @@
       "name": "Aloe",
       "image": "./images/aloe.jpg",
       "price": 15.99,
-      "sold": true
+      "sold": false
     },
     {
       "id": 2,
@@ -54,14 +54,14 @@
       "image": "https://m.media-amazon.com/images/I/71NAGPZug1L.jpg",
       "price": "1000",
       "id": 8,
-      "sold": false
+      "sold": true
     },
     {
       "name": "Christopher",
       "image": "https://m.media-amazon.com/images/I/71NAGPZug1L.jpg",
       "price": "100",
       "id": 9,
-      "sold": true
+      "sold": false
     },
     {
       "name": "aaa",
